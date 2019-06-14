@@ -89,8 +89,9 @@
             * Default
           - Payment
             * setAccountOwner
-            * setHouseNumber
-            * setZipCode
+            * setIban
+            * setCustomerId
+            * setPaymentDataId
             * Default
             
   #### Classes
