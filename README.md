@@ -25,14 +25,14 @@
 ### Preperation: 
   #### Technologies:
   ##### Only JavaScript 
-    * Pros:
-      * Fast loading time
-      * No overhead
-      * Quickly done
-      * Less files
-    * Cons:
-      * Harder to maintain/scale
-      * Therefor not well suited for large teams
+  * Pros:
+    * Fast loading time
+    * No overhead
+    * Quickly done
+    * Less files
+  * Cons:
+    * Harder to maintain/scale
+    * Therefor not well suited for large teams
       
   ##### Angular with Rxjs and NgRx using Redux pattern
    * Pros:
