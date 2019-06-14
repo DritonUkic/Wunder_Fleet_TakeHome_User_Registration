@@ -22,18 +22,30 @@
 - [ ] Minimal UI
 - [ ] Structure of the code using MVC/MVI/MVVM or any other pattern with explanation
 
+<<<<<<< HEAD
 ### Preperation 
   #### Technologies
   ##### Only JavaScript with Bootstrap
+=======
+### Preperation: 
+  #### Technologies:
+  ##### Only JavaScript 
+>>>>>>> 42661048644470f42ae66f4476bc4dfeedab11ab
   * Pros:
     * Fast loading time
     * No overhead
     * Quickly done
     * Less files
+<<<<<<< HEAD
     * Wunder uses Bootstrap
   * Cons:
     * Harder to maintain/scale
     * Therefore not well suited for large teams
+=======
+  * Cons:
+    * Harder to maintain/scale
+    * Therefor not well suited for large teams
+>>>>>>> 42661048644470f42ae66f4476bc4dfeedab11ab
       
   ##### Angular with Material, Rxjs and NgRx using Redux pattern
    * Pros:
@@ -116,9 +128,18 @@
       lastRegisterStep: number // 0- Personal, 1- Address, 2- Payment, 3- Success
 
       
+<<<<<<< HEAD
     }
   };
 
   ```
   ### Screenshots
   ### Results
+=======
+   I've decided to go with the second approach because working in a large team was a topic in the interview and I think it will draw more attention to the application. 
+   In the context of a small application only consisting of a register form with local storage and one POST request with no further development it would be smarter to write the app in "vanilla" JavaScript.
+   I will compile the Angular application so there won´t be the requirement of having node installed
+   
+  ### Screenshots:
+  ### Results:
+>>>>>>> 42661048644470f42ae66f4476bc4dfeedab11ab
