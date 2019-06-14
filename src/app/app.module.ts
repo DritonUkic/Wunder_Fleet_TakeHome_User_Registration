@@ -1,16 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/ui-loader/header/header.component';
+import { FooterComponent } from './components/ui-loader/footer/footer.component';
+import { UiLoaderComponent } from './components/ui-loader/ui-loader.component';
+
+import * as Reducers from './reducers/register/index';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    UiLoaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({
+      personal: Reducers.personalReducer,
+      address: Reducers.addressReducer,
+      payment: Reducers.paymentReducer
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
