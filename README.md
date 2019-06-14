@@ -22,7 +22,7 @@
 - [ ] Minimal UI
 - [ ] Structure of the code using MVC/MVI/MVVM or any other pattern with explanation
 
-  ### Preperation: 
+### Preperation: 
   #### Technologies:
   ##### Only JavaScript 
     * Pros:
