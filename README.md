@@ -96,29 +96,51 @@
             
   #### Classes
   ```typescript
-  let localStorage = {
-    customerData:{
-      personalData:{
-        firstname: string,
-        lastname: string,
-        telephone: string // Number will remove starting 0s and there wont be any calculations with it
-      },
-      addressData:{
-        street: string,
-        houseNumber: string,
-        zipCode: string // Number can´t store a dash
-      },
-      paymentData:{
-        accountOwner: string,
-        iban: string,
-        customerId: number // Not in view, will be auto-generated,
-        paymentDataId: string
-      },
-      lastRegisterStep: number // 0- Personal, 1- Address, 2- Payment, 3- Success
-
-      
+  
+    class Personal {
+      constructor(firstName: string, lastName: string, telephone: string) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.telephone = telephone;
+      }
+      firstName: string;
+      lastName: string;
+      telephone: string;
     }
   };
+  
+   class Address {
+    constructor(street: string, houseNumber: string, zipCode: string) {
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.zipCode = zipCode;
+    }
+    street: string;
+    houseNumber: string;
+    zipCode: string;
+    };
+    
+    class Payment {
+      constructor(accountOwner: string, iban: string, paymentDataId: string, customerId: number) {
+          this.accountOwner = accountOwner;
+          this.iban = iban;
+          this.paymentDataId = paymentDataId;
+          this.customerId = customerId;
+      }
+      accountOwner: string;
+      iban: string;
+      paymentDataId: string;
+      customerId: number;
+    };
+    
+    
+    class customerData{
+      personalData: Personal;
+      addressData: Address;
+      paymentData: Payment;
+      lastRegisterStep: number;
+    }
+  
 
   ```
   ### Screenshots
