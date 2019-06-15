@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 import { personalActionTypes } from '../../actions/register';
+import { Personal }from 'src/app/models/register';
 
-export function personalReducer(Data: any, action: Action) {
+export const initialPersonal = new Personal("abc","abc","abc");
+
+export function personalReducer(Data = initialPersonal, action: Action) {
   switch (action.type) {
       case personalActionTypes.setFirstName:
         // Logic  
@@ -15,8 +18,8 @@ export function personalReducer(Data: any, action: Action) {
         // Logic  
         return Data;  
           
-      default:
-        // Logic  
-        return Data;   
+    default:
+      // Logic  
+      return Data;   
     }
 }

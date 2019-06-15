@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
 import { paymentActionTypes } from '../../actions/register';
+import { Payment }from 'src/app/models/register';
 
-export function paymentReducer(Data: any, action: Action) {
+export const initialPayment = new Payment("abc","abc","abc",5);
+
+export function paymentReducer(Data = initialPayment, action: Action) {
     switch (action.type) {
         case paymentActionTypes.setAccountOwner:
           // Logic  
