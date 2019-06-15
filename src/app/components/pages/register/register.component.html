@@ -1,3 +1,22 @@
 <p>
   register works!
 </p>
+<p>Current firstname: {{ firstName$ | async }}</p>
+<p>Current lastname: {{ lastName$ | async }}</p>
+<p>Current telephone: {{ telephone$ | async }}</p>
+<p>Current street: {{ street$ | async }}</p>
+<p>Current housenumber: {{ houseNumber$ | async }}</p>
+<p>Current zipcode: {{ zipCode$ | async }}</p>
+<p>Current accountOwner: {{ accountOwner$ | async }}</p>
+<p>Current iban: {{ iban$ | async }}</p>
+<p>Current customerId: {{ customerId$ | async }}</p>
+<p>Current paymentDataId: {{ paymentDataId$ | async }}</p>
+
+<input placeholder="Firstname" id="inputPfN" type="text" (change)="changeStore($event)">
+<input placeholder="Lastname" id="inputPlN" type="text" (change)="changeStore($event)">
+<input placeholder="Telephone" id="inputPt" type="text" (change)="changeStore($event)">
+<input placeholder="Street" id="inputAs" type="text" (change)="changeStore($event)">
+<input placeholder="Housenumber" id="inputAhN" type="text" (change)="changeStore($event)">
+<input placeholder="Zipcode" id="inputAzC" type="text" (change)="changeStore($event)">
+<input placeholder="AccountOwner" id="inputPaO" type="text" (change)="changeStore($event)">
+<input placeholder="Iban" id="inputPi" type="text" (change)="changeStore($event)">
