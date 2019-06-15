@@ -7,16 +7,50 @@
 <p>Current street: {{ street$ | async }}</p>
 <p>Current housenumber: {{ houseNumber$ | async }}</p>
 <p>Current zipcode: {{ zipCode$ | async }}</p>
+<p>Current city: {{ city$ | async }}</p>
 <p>Current accountOwner: {{ accountOwner$ | async }}</p>
 <p>Current iban: {{ iban$ | async }}</p>
 <p>Current customerId: {{ customerId$ | async }}</p>
 <p>Current paymentDataId: {{ paymentDataId$ | async }}</p>
 
-<input placeholder="Firstname" id="inputPfN" type="text" (change)="changeStore($event)">
-<input placeholder="Lastname" id="inputPlN" type="text" (change)="changeStore($event)">
-<input placeholder="Telephone" id="inputPt" type="text" (change)="changeStore($event)">
-<input placeholder="Street" id="inputAs" type="text" (change)="changeStore($event)">
-<input placeholder="Housenumber" id="inputAhN" type="text" (change)="changeStore($event)">
-<input placeholder="Zipcode" id="inputAzC" type="text" (change)="changeStore($event)">
-<input placeholder="AccountOwner" id="inputPaO" type="text" (change)="changeStore($event)">
-<input placeholder="Iban" id="inputPi" type="text" (change)="changeStore($event)">
+<form class="example-form" (change)="changeStore($event)">
+  <div *ngIf="stepNumber === 0">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Firstname" id="inputPfN" type="text" value="{{firstName$ | async}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Lastname" id="inputPlN" type="text" value="{{lastName$ | async}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Telephone" id="inputPt" type="text" value="{{telephone$ | async}}">
+    </mat-form-field>
+  </div>
+  <div *ngIf="stepNumber === 1">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Street" id="inputAs" type="text" value="{{street$ | async}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Housenumber" id="inputAhN" type="text" value="{{houseNumber$ | async}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Zipcode" id="inputAzC" type="text" value="{{zipCode$ | async}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="City" id="inputAc" type="text" value="{{city$ | async}}">
+    </mat-form-field>        
+  </div>
+  <div *ngIf="stepNumber === 2">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="AccountOwner" id="inputPaO" type="text" value="{{accountOwner$ | async}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Iban" id="inputPi" type="text" value="{{iban$ | async}}">
+    </mat-form-field>
+  </div> 
+  <div *ngIf="stepNumber === 3">
+    <p>SUCCESS</p>
+  </div>
+  <button mat-button type="button" *ngIf="stepNumber > 0" (click)="chgStep(false)">Back</button>
+  <button mat-button type="button" *ngIf="stepNumber < 3" (click)="chgStep(true)">Next</button>
+</form>  
+

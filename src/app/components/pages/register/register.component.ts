@@ -5,29 +5,8 @@ import {Success, Danger, Observed, Normal, csep, clog, csepE} from '../../messag
 import { Payment, Personal, Address } from 'src/app/models/register';
 import { customerData } from 'src/app/models/customerData';
 import { async } from '@angular/core/testing';
-import { setFirstName, setLastName, setCustomerId, setTelephone, setStreet, setZipCode, setIban, setAccountOwner, setHouseNumber } from 'src/app/actions/register';
-
-
-let personal: any;
-
-const personalObserver = {
-  next: x => console.log('%c  New Personal values: ' + JSON.stringify(x, null, 2), Observed),
-  error: err => console.error('Observer got an error: ' + err),
-  complete: () => console.log('Observer got a complete notification'),
-};
-
-const paymentObserver = {
-  next: x => console.log('%c  New Payment values: ' + JSON.stringify(x, null, 2), Observed),
-  error: err => console.error('Observer got an error: ' + err),
-  complete: () => console.log('Observer got a complete notification'),
-};
-
-const addressObserver = {
-  next: x => console.log('%c  New Address values: ' + JSON.stringify(x, null, 2), Observed),
-  error: err => console.error('Observer got an error: ' + err),
-  complete: () => console.log('Observer got a complete notification'),
-};
-
+import { setFirstName, setLastName, setCustomerId, setTelephone, setStreet, setZipCode, setIban, setAccountOwner, setHouseNumber, setCity, setPersonal, setPayment, setAddress } from 'src/app/actions/register';
+import { UpdateStepLS, CheckLS, getStep, initNewLS } from 'src/app/services/localStorage';
 
 @Component({
   selector: 'app-register',
@@ -35,15 +14,6 @@ const addressObserver = {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
-  personalData$: Observable<Personal>;
-  personalSub: any;
-  paymentData$: Observable<Payment>;
-  paymentSub: any;
-  addressData$: Observable<Address>;
-  addressSub: any;
-  customerData: customerData;
-  currentUserSubject: BehaviorSubject<Address>;
 
   //Personal
   firstName$: Observable<string>;
@@ -60,24 +30,14 @@ export class RegisterComponent implements OnInit {
   street$: Observable<string>;
   houseNumber$: Observable<string>;
   zipCode$: Observable<string>;
+  city$: Observable<string>;
 
+  stepNumber = 0 ;
 
   constructor(
     private store: Store<{personal: Personal, address: Address, payment: Payment}>,
 
   ) {
-    console.log("\r");
-    clog("Observer Output:", Normal);
-    this.personalData$ = store.pipe(select(state => state.personal));
-    this.personalSub = this.personalData$.subscribe(personalObserver);
-    this.paymentData$ = store.pipe(select(state => state.payment));
-    this.paymentSub = this.paymentData$.subscribe(paymentObserver);
-    this.addressData$ = store.pipe(select(state => state.address));
-    this.addressSub = this.addressData$.subscribe(addressObserver);
-    this.customerData = { personalData: this.personalSub, addressData: this.addressSub, paymentData: this.paymentSub, lastRegisterStep : 0 }
-
-
-    
   }
  
   getPersonalData() {
@@ -90,6 +50,7 @@ export class RegisterComponent implements OnInit {
     this.street$ = this.store.pipe(select(state => state.address.street));
     this.houseNumber$ = this.store.pipe(select(state => state.address.houseNumber));
     this.zipCode$ = this.store.pipe(select(state => state.address.zipCode));
+    this.city$ = this.store.pipe(select(state => state.address.city));
   }
 
   getPaymentData() {
@@ -119,6 +80,9 @@ export class RegisterComponent implements OnInit {
         break; 
       case 'inputAzC':
         this.store.dispatch(new setZipCode(event.target.value));
+        break;
+      case 'inputAc':
+        this.store.dispatch(new setCity(event.target.value));
         break; 
       case 'inputPaO':
         this.store.dispatch(new setAccountOwner(event.target.value));
@@ -129,16 +93,39 @@ export class RegisterComponent implements OnInit {
         
     }  
   }
+  //Increment? True or false
+  chgStep(BoolInc) {
+    BoolInc ? this.stepNumber++ : this.stepNumber--;
+    UpdateStepLS(this.stepNumber);
+    /*
+    switch (this.stepNumber) {
+      case 0:
+        this.getPersonalData()  
+        break;
 
-  ngOnInit(): void {
+      case 1:
+        this.getAddressData()  
+        break;
+
+      case 2:
+        this.getPaymentData()  
+        break; 
+    } */
+  }
+
+  ngOnInit() {
     csep();
     clog("User initialized Component: Register", Success);
-    this.store.dispatch(new setFirstName("abcde"));
-    this.store.dispatch(new setLastName("Keks"));
+    if (CheckLS().exists) {
+      this.store.dispatch(new setPersonal(CheckLS().storedUser.personalData));
+      this.store.dispatch(new setPayment(CheckLS().storedUser.paymentData));
+      this.store.dispatch(new setAddress(CheckLS().storedUser.addressData));
+      this.stepNumber = getStep();
+    }
 
     this.getPersonalData();
     this.getAddressData();
-    this.getPaymentData()
+    this.getPaymentData();
 
     
      
