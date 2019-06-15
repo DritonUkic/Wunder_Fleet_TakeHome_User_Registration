@@ -11,6 +11,8 @@ import { UiLoaderComponent } from './components/ui-loader/ui-loader.component';
 import * as Reducers from './reducers/register/index';
 import { RegisterComponent } from './components/pages/register/register.component';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,9 @@ import { RegisterComponent } from './components/pages/register/register.componen
       address: Reducers.addressReducer,
       payment: Reducers.paymentReducer
     }),
+    StoreDevtoolsModule.instrument({
+      
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
