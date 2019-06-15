@@ -9,13 +9,15 @@ import { FooterComponent } from './components/ui-loader/footer/footer.component'
 import { UiLoaderComponent } from './components/ui-loader/ui-loader.component';
 
 import * as Reducers from './reducers/register/index';
+import { RegisterComponent } from './components/pages/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    UiLoaderComponent
+    UiLoaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
