@@ -12,6 +12,9 @@ import * as Reducers from './reducers/register/index';
 import { RegisterComponent } from './components/pages/register/register.component';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoMaterialModule } from 'src/material-module';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     }),
     StoreDevtoolsModule.instrument({
       
-    })
+    }),
+    BrowserAnimationsModule,
+    DemoMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
