@@ -4,22 +4,21 @@ import { Address } from 'src/app/models/register';
 
 export const initialAddress = new Address("abc","abc","abc");
 
-export function addressReducer(Data = initialAddress, action: Action) {
+export function addressReducer(state: Address = initialAddress, action: Action) {
     switch (action.type) {
-        case addressActionTypes.setStreet:
-          // Logic  
-          return Data;
+      case addressActionTypes.setStreet:
+        state.street = action.payload; 
+        return state;
             
-        case addressActionTypes.setHouseNumber:
-          // Logic  
-          return Data; 
+      case addressActionTypes.setHouseNumber:
+        state.houseNumber = action.payload;
+        return state; 
             
-        case addressActionTypes.setZipCode:
-          // Logic  
-          return Data;  
+      case addressActionTypes.setZipCode:
+        state.zipCode = action.payload  
+        return state;  
             
-        default:
-          // Logic  
-          return Data;   
+      default:
+        return state;   
       }
 }

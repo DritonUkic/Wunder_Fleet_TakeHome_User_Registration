@@ -4,26 +4,25 @@ import { Payment }from 'src/app/models/register';
 
 export const initialPayment = new Payment("abc","abc","abc",5);
 
-export function paymentReducer(Data = initialPayment, action: Action) {
+export function paymentReducer(state: Payment = initialPayment, action: Action) {
     switch (action.type) {
         case paymentActionTypes.setAccountOwner:
-          // Logic  
-          return Data;
+          state.accountOwner = action.payload; 
+          return state;
             
         case paymentActionTypes.setIban:
-          // Logic  
-          return Data; 
+          state.iban = action.payload; 
+          return state; 
             
         case paymentActionTypes.setCustomerId:
-          // Logic  
-          return Data;  
+          state.customerId = action.payload; 
+          return state;  
           
         case paymentActionTypes.setPaymentDataId:
-          // Logic  
-          return Data;      
+          state.paymentDataId = action.payload;  
+          return state;      
             
-        default:
-          // Logic  
-          return Data;   
+        default:  
+          return state;   
       }
   }
