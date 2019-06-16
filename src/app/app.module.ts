@@ -15,6 +15,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from 'src/material-module';
 
+import { HttpClientModule } from '@angular/common/http';
+import { AlertComponent } from '@app/_components/alert.component';
 
 @NgModule({
   declarations: [
@@ -22,21 +24,21 @@ import { DemoMaterialModule } from 'src/material-module';
     HeaderComponent,
     FooterComponent,
     UiLoaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DemoMaterialModule,
     StoreModule.forRoot({
       personal: Reducers.personalReducer,
       address: Reducers.addressReducer,
       payment: Reducers.paymentReducer
     }),
-    StoreDevtoolsModule.instrument({
-      
-    }),
-    BrowserAnimationsModule,
-    DemoMaterialModule
+    StoreDevtoolsModule.instrument({})
   ],
   providers: [],
   bootstrap: [AppComponent]
