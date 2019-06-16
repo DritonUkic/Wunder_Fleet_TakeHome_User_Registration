@@ -14,7 +14,7 @@
 - [x] Basic user registration with 4 separated steps and only one active step at a time.
 - [x] The steps will be personal, address, payment and success.
 - [x] Locally saved data
-- [ ] The payment step will execute a POST request to the backend when the "next" button gets clicked.
+- [x] The payment step will execute a POST request to the backend when the "next" button gets clicked.
   
 - [x] The user will be able to leave the registration on every step/view and to reload his progress.
 - [x] No access control or validation
@@ -131,6 +131,7 @@
         Update[*Interfaces]LS -> Update storedUser with new states
         getStep -> Get storedUser.lastRegisterStep
         updateStepLS -> Update lastStep in localstorage
+  #### Design
         
   ### Screenshots
   ### Results
