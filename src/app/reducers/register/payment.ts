@@ -3,7 +3,7 @@ import { paymentActionTypes } from '../../actions/register';
 import { Payment }from 'src/app/models/register';
 import { UpdatePaymentLS } from 'src/app/services/localStorage';
 
-export const initialPayment: Payment = { accountOwner:"", iban:"", customerId:0, paymentDataId:"" }
+export const initialPayment: Payment = { customerId:1, iban:"", owner:"",  paymentDataId:"" }
 
 export function paymentReducer(state: Payment = initialPayment, action: Action) {
   switch (action.type) {
@@ -12,8 +12,8 @@ export function paymentReducer(state: Payment = initialPayment, action: Action) 
           UpdatePaymentLS(state);
           return state;
       
-        case paymentActionTypes.setAccountOwner:
-          state.accountOwner = action.payload;
+        case paymentActionTypes.setOwner:
+          state.owner = action.payload;
           UpdatePaymentLS(state);
           return state;
             

@@ -1,6 +1,6 @@
 export interface Payment {
-    accountOwner: string;
-    iban: string;
     customerId: number;
+    iban: string;
+    owner: string;
     paymentDataId: string;
 };
