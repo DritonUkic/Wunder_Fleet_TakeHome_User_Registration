@@ -17,16 +17,16 @@
   * Register store as forFeature
   * Meta-Reducer to compose map of reducers into a single reducer
   * Module and store for ui-loader
-  * Components for every step, register isn´t atomic
+  * Components for every step, register isn't atomic
   * Router and components instead of a variable 'currentStep'
   * Fully integrate corporate identity, including theme colors
   * Smoother UI with animations
 
 ## Explanation of used pattern
-  This task required view renders and state reproduction, therefore i´ve decided to go with the redux pattern because it´s proficient for view renders and state reproduction.
+  This task required view renders and state reproduction, therefore i've decided to go with the redux pattern because it's proficient for view renders and state reproduction.
   It´s really easy to understand, debug and refactor the code when neccessary, especially when using redux dev tools.
   Here is an image of the architecture:
-  ![architecture](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/screenshots/architecture.png)
+  ![architecture](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/architecture.png)
 
 ## Design Document 
   ### Goals:
@@ -162,22 +162,22 @@
           * One active input at a time, the rest goes to the background
 
   #### Additional Informations
-        When starting the Angular application from localhost, it´s neccessary to deactivate web-security for the POST request to work properly.
+        When starting the Angular application from localhost, it's neccessary to deactivate web-security for the POST request to work properly.
         For Google Chrome on Windows 10 clone a shortcut, open the properties and under shortcut/target add  
         --disable-web-security --user-data-dir="C:\tmpChromeSession"
         to the path.
           Example: "[Path to chrome.exe]" --disable-web-security --user-data-dir="C:\tmpChromeSession"
 
   ### Screenshots
-    #### Personal View
-      ![Personal view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/screenshots/personal.png)
-    #### Address View
-      ![Address view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/screenshots/address.png)
-    #### Payment View
-      ![Payment view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/screenshots/payment.png)
-    #### Success View
-      ![Success view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/screenshots/success.png)
-    #### Error View
-      ![Error view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/screenshots/error.png)
+   #### Personal View
+      ![Personal view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/personal.png)
+   #### Address View
+      ![Address view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/address.png)
+   #### Payment View
+      ![Payment view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/payment.png)
+   #### Success View
+      ![Success view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/success.png)
+   #### Error View
+      ![Error view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/error.png)
 
 
