@@ -1,4 +1,11 @@
-<p>
-  ui-loader works!
-</p>
-<router-outlet></router-outlet>
+<div class="userinterface">
+  <div class="header" fxLayout="row" fxLayoutAlign="center start" >
+    <app-header></app-header>
+  </div>
+  <div class="body">
+    <router-outlet ></router-outlet>
+  </div>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</div>
