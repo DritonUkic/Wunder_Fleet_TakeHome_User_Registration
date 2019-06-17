@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs';
 
 import { AlertService } from '../services';
 
+//Credits to https://jasonwatmore.com/.
+//Not used in this project
+
 @Component({
     selector: 'alert',
     templateUrl: 'alert.component.html'
