@@ -7,7 +7,10 @@ import { Payment, Personal, Address } from 'src/app/models/register';
 import { customerData } from 'src/app/models/customerData';
 import { async } from '@angular/core/testing';
 import { setFirstName, setLastName, setCustomerId, setTelephone, setStreet, setZipCode, setIban, setHouseNumber, setCity, setPersonal, setPayment, setAddress, setOwner, setPaymentDataId } from 'src/app/actions/register';
-import { RegisterService, AlertService, UpdateStepLS, CheckLS, getStep, getUser } from '@app/services';
+import { RegisterService, AlertService, UpdateStepLS, CheckLS, getStep, getUser, getActive, UpdateActiveLS } from '@app/services';
+
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-register',
@@ -22,7 +25,7 @@ export class RegisterComponent implements OnInit {
   telephone$: Observable<string>;
 
   //Payment
-  accountOwner$: Observable<string>;
+  owner$: Observable<string>;
   iban$: Observable<string>;
   customerId$: Observable<number>;
   paymentDataId$: Observable<string>;
@@ -35,11 +38,17 @@ export class RegisterComponent implements OnInit {
 
   stepNumber: number = 0;
   loading: boolean = false;
+  active: boolean = false;
+  
+  formError: boolean = false;
+
+  missingArr = [];
 
   constructor(
     private store: Store<{personal: Personal, address: Address, payment: Payment}>,
     private registerService: RegisterService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private _snackBar: MatSnackBar
   ) {
   }
  
@@ -57,7 +66,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getPaymentData() {
-    this.accountOwner$ = this.store.pipe(select(state => state.payment.owner));
+    this.owner$ = this.store.pipe(select(state => state.payment.owner));
     this.iban$ = this.store.pipe(select(state => state.payment.iban));
     this.customerId$ = this.store.pipe(select(state => state.payment.customerId));
     this.paymentDataId$ = this.store.pipe(select(state => state.payment.paymentDataId));
@@ -106,7 +115,12 @@ export class RegisterComponent implements OnInit {
         .subscribe(
             data => {
             //  this.alertService.success("" + data.paymentDataId, true);
-              this.store.dispatch(new setPaymentDataId(data.paymentDataId));
+              let res: any;
+              res = data;
+              this.store.dispatch(new setPaymentDataId(res.paymentDataId));
+              this.active = true;
+              UpdateActiveLS(this.active);
+              this.loading = false;
             },
             error => {
                 this.alertService.error(error);
@@ -116,43 +130,62 @@ export class RegisterComponent implements OnInit {
 
   //Increment? True or false
   chgStep(BoolInc) {
-    BoolInc ? this.stepNumber++ : this.stepNumber--;
-    UpdateStepLS(this.stepNumber);
+    if (this.stepNumber === 2 && BoolInc) {
+      if (this.checkForm()) {
+        this.stepNumber++;
+        UpdateStepLS(this.stepNumber);
+        this.submitPaymentData()
+      }
+      else {
+        this.formError = true;
+      }
+    }
+    else if (this.stepNumber < 2 || !BoolInc) {
+      BoolInc ? this.stepNumber++ : this.stepNumber--;
+      UpdateStepLS(this.stepNumber);
+    }
+  }
 
-    this.stepNumber === 3 ? this.submitPaymentData() : undefined;
-    /*
-    switch (this.stepNumber) {
-      case 0:
-        this.getPersonalData()  
-        break;
-
-      case 1:
-        this.getAddressData()  
-        break;
-
-      case 2:
-        this.getPaymentData()  
-        break; 
-    } */
+  checkForm() {
+    this.missingArr = [];
+    let User = getUser();
+    User.personalData.firstName.length === 0 ? this.missingArr.push("Personal: Firstname") : undefined;
+    User.personalData.lastName.length === 0 ? this.missingArr.push("Personal: Lastname") : undefined;
+    User.personalData.telephone.length === 0 ? this.missingArr.push("Personal: Telephone") : undefined;
+    User.addressData.zipCode.length === 0 ? this.missingArr.push("Address: Zipcode") : undefined;
+    User.addressData.city.length === 0 ? this.missingArr.push("Address: City") : undefined;
+    User.addressData.street.length === 0 ? this.missingArr.push("Address: Street") : undefined;
+    User.addressData.houseNumber.length === 0 ? this.missingArr.push("Address: Housenumber") : undefined;
+    User.paymentData.owner.length === 0 ? this.missingArr.push("Payment: Owner") : undefined;
+    User.paymentData.iban.length === 0 ? this.missingArr.push("Payment: IBAN") : undefined;
+    if (this.missingArr.length === 0) {
+      return true;
+    }
+    return false;
   }
 
   ngOnInit() {
-    csep();
-    clog("User initialized Component: Register", Success);
     // Check if a stored user already exists. On true update RegisterComponent states and get Steps
     if (CheckLS().exists) {
       this.store.dispatch(new setPersonal(CheckLS().storedUser.personalData));
       this.store.dispatch(new setPayment(CheckLS().storedUser.paymentData));
       this.store.dispatch(new setAddress(CheckLS().storedUser.addressData));
       this.stepNumber = getStep();
+      this.active = getActive();
     }
     // Get States
     this.getPersonalData();
     this.getAddressData();
     this.getPaymentData();
-
-    
-     
   }
 
+  copyId() {
+    var copied = document.getElementById('PID') as HTMLInputElement;
+    copied.select();
+    document.execCommand("copy");
+    console.log(copied);
+    this._snackBar.open("Copied!", "Close", {
+      duration: 2000,
+    });
+  }
 }
