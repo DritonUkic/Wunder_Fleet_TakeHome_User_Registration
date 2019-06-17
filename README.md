@@ -1,7 +1,7 @@
 # Wunder_Fleet_TakeHome_User_Registration Task 
 ## Possible optimizations
   * User opt-in localstorage
-  * Set cookie delete localstorage
+  * Set cookie, remove localstorage
   * Log inits of components
   * Lazyload
   * Correct form handling
