@@ -9,7 +9,7 @@ const iniAddress: Address = { street: "", houseNumber: "", zipCode: "", city:"" 
 const iniPayment: Payment = { customerId:1, iban: "", owner: "", paymentDataId:"" };
 
 
-let User: customerData = {personalData: iniPersonal, addressData: iniAddress, paymentData: iniPayment, lastRegisterStep:0}
+let User: customerData = {personalData: iniPersonal, addressData: iniAddress, paymentData: iniPayment, lastRegisterStep:0, active:false}
 export let Step: number = 0;
 
 // Check if a storedUser exists
@@ -45,8 +45,17 @@ export function UpdateStepLS(Step) {
     localStorage.setItem('currentUser', JSON.stringify(User));
 }
 
+export function UpdateActiveLS(active) {
+    User.active = active;
+    localStorage.setItem('currentUser', JSON.stringify(User));
+}
+
 export function getStep() {
     return User.lastRegisterStep;
+}
+
+export function getActive() {
+    return User.active;
 }
 
 export function getUser() {
