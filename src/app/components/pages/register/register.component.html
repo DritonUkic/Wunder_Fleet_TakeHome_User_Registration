@@ -1,56 +1,75 @@
-<p>
-  register works!
-</p>
-<p>Current firstname: {{ firstName$ | async }}</p>
-<p>Current lastname: {{ lastName$ | async }}</p>
-<p>Current telephone: {{ telephone$ | async }}</p>
-<p>Current street: {{ street$ | async }}</p>
-<p>Current housenumber: {{ houseNumber$ | async }}</p>
-<p>Current zipcode: {{ zipCode$ | async }}</p>
-<p>Current city: {{ city$ | async }}</p>
-<p>Current accountOwner: {{ accountOwner$ | async }}</p>
-<p>Current iban: {{ iban$ | async }}</p>
-<p>Current customerId: {{ customerId$ | async }}</p>
-<p>Current paymentDataId: {{ paymentDataId$ | async }}</p>
-
-<form class="example-form" (change)="changeStore($event)">
-  <div *ngIf="stepNumber === 0">
-    <mat-form-field class="example-full-width">
+<form *ngIf="!formError" class="example-form" (change)="changeStore($event)">
+  <div *ngIf="stepNumber === 0" fxLayout="column" fxLayoutAlign="end center">
+    <h2 class="center formHeader">PERSONAL</h2>
+    <h4 class="center formHint">Who are you?</h4>
+    <mat-form-field appearance="outline" class="center" >
+      <mat-label>Firstname</mat-label>
       <input matInput placeholder="Firstname" id="inputPfN" type="text" value="{{firstName$ | async}}">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field appearance="outline" class="center">
+      <mat-label>Lastname</mat-label>
       <input matInput placeholder="Lastname" id="inputPlN" type="text" value="{{lastName$ | async}}">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field appearance="outline" class="center">
+      <mat-label>Telephone</mat-label>
       <input matInput placeholder="Telephone" id="inputPt" type="text" value="{{telephone$ | async}}">
     </mat-form-field>
   </div>
-  <div *ngIf="stepNumber === 1">
-    <mat-form-field class="example-full-width">
+  <div *ngIf="stepNumber === 1" fxLayout="column" fxLayoutAlign="center center">
+    <h2 class="center formHeader">ADDRESS</h2>
+    <h4 class="center formHint">Where do you live?</h4>
+    <mat-form-field appearance="outline" class="center">
+        <mat-label>Zipcode</mat-label>
+        <input matInput placeholder="Zipcode" id="inputAzC" type="text" value="{{zipCode$ | async}}">
+    </mat-form-field>  
+    <mat-form-field appearance="outline" class="center">
+          <mat-label>City</mat-label>
+          <input matInput placeholder="City" id="inputAc" type="text" value="{{city$ | async}}">
+    </mat-form-field>  
+    <mat-form-field appearance="outline" class="center">
+      <mat-label>Street</mat-label>
       <input matInput placeholder="Street" id="inputAs" type="text" value="{{street$ | async}}">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field appearance="outline" class="center">
+      <mat-label>Housenumber</mat-label>
       <input matInput placeholder="Housenumber" id="inputAhN" type="text" value="{{houseNumber$ | async}}">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Zipcode" id="inputAzC" type="text" value="{{zipCode$ | async}}">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="City" id="inputAc" type="text" value="{{city$ | async}}">
-    </mat-form-field>        
+    </mat-form-field>    
   </div>
-  <div *ngIf="stepNumber === 2">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="AccountOwner" id="inputPaO" type="text" value="{{accountOwner$ | async}}">
+  <div *ngIf="stepNumber === 2" fxLayout="column" fxLayoutAlign="center center">
+    <h2 class="center formHeader">PAYMENT</h2>
+    <h4 class="center formHint">What are your bank details?</h4>
+    <mat-form-field appearance="outline" class="center">
+      <mat-label>Account owner</mat-label>
+      <input matInput placeholder="Account owner" id="inputPaO" type="text" value="{{owner$ | async}}">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Iban" id="inputPi" type="text" value="{{iban$ | async}}">
+    <mat-form-field appearance="outline" class="center">
+        <mat-label>IBAN</mat-label>
+      <input matInput placeholder="IBAN" id="inputPi" type="text" value="{{iban$ | async}}">
     </mat-form-field>
   </div> 
-  <div *ngIf="stepNumber === 3">
-    <p>SUCCESS</p>
+  <div *ngIf="stepNumber === 3" fxLayout="column" fxLayoutAlign="center center">
+      <h2 class="center formHeader">SUCCESS</h2>
+      <h4 class="center formHint">Thanks!</h4>
+      <h4 class="center formHint">We will contact you shortly.</h4>
+      <h4 class="center formHint">Your PaymentDataId is:</h4>
+      <mat-form-field appearance="outline" class="center">
+          <mat-label>PaymentDataId</mat-label>
+          <input matInput placeholder="PaymentDataId" id="PID" type="text" value="{{paymentDataId$ | async}}">
+          <button mat-stroked-button type="button" (click)="copyId()">Copy</button>
+        </mat-form-field>
   </div>
-  <button mat-button type="button" *ngIf="stepNumber > 0" (click)="chgStep(false)">Back</button>
-  <button mat-button type="button" *ngIf="stepNumber < 3" (click)="chgStep(true)">Next</button>
+  <div >
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <button mat-stroked-button type="button" *ngIf="stepNumber > 0 && !active" (click)="chgStep(false)">Back</button>
+      <button mat-stroked-button type="button" *ngIf="stepNumber < 3 && !active" (click)="chgStep(true)">Next</button>  
+    </div>
+  </div>
 </form>  
 
+<div *ngIf="formError" fxLayout="column" fxLayoutAlign="end center">
+    <h2 class="center formHeader">ERROR</h2>
+    <h4 class="center formHint">Please fill in ur missing details.</h4>
+      <p class="error" *ngFor="let missing of missingArr" [innerHTML]="missing">
+      </p>
+     <button mat-stroked-button (click)="formError=false">Back</button>
+</div>
