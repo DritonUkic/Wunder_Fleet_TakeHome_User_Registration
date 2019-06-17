@@ -5,4 +5,5 @@ export class customerData{
     addressData: registerData.Address;
     paymentData: registerData.Payment;
     lastRegisterStep: number;
+    active: boolean;
 }
