@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Payment } from 'src/app/models/register';
 
 declare module '@ngrx/store' {
   interface Action {
@@ -8,14 +9,20 @@ declare module '@ngrx/store' {
 }
 
 export enum paymentActionTypes {
-    setAccountOwner = '[Register Component] [Payment] setAccountOwner',
+    setPayment = '[Register Component] [Payment] setPayment',
+    setOwner = '[Register Component] [Payment] setOwner',
     setIban = '[Register Component] [Payment] setIban',
     setCustomerId = '[Register Component] [Payment] setCustomerId',
     setPaymentDataId = '[Register Component] [Payment] setPaymentDataId'
 }
-  
-export class setAccountOwner implements Action {
-    readonly type = paymentActionTypes.setAccountOwner;
+
+export class setPayment implements Action {
+    readonly type = paymentActionTypes.setPayment;
+    constructor(public payload: Payment) { }
+}
+
+export class setOwner implements Action {
+    readonly type = paymentActionTypes.setOwner;
     constructor(public payload: string) { }
 }
   
@@ -31,5 +38,5 @@ export class setCustomerId implements Action {
   
 export class setPaymentDataId implements Action {
     readonly type = paymentActionTypes.setPaymentDataId;
-    constructor(public payload: number) { }
+    constructor(public payload: string) { }
   }

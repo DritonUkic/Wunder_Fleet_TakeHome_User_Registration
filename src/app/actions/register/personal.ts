@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Personal } from 'src/app/models/register';
 
 declare module '@ngrx/store' {
   interface Action {
@@ -8,11 +9,17 @@ declare module '@ngrx/store' {
 }
 
 export enum personalActionTypes {
+    setPersonal = '[Register Component] [Personal] setPersonal',
     setFirstName = '[Register Component] [Personal] setFirstName',
     setLastName = '[Register Component] [Personal] setLastName',
     setTelephone = '[Register Component] [Personal] setTelephone'
 }
   
+export class setPersonal implements Action {
+    readonly type = personalActionTypes.setPersonal;
+    constructor(public payload: Personal) { }
+}
+
 export class setFirstName implements Action {
     readonly type = personalActionTypes.setFirstName;
     constructor(public payload: string) { }

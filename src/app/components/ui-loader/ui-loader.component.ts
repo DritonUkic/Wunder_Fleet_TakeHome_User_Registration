@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-ui-loader',
   templateUrl: './ui-loader.component.html',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiLoaderComponent implements OnInit {
 
-  constructor() { }
+
+  constructor() {
+
+   }
 
   ngOnInit() {
   }

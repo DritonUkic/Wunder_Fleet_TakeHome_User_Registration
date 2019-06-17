@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Address } from 'src/app/models/register';
 
 declare module '@ngrx/store' {
   interface Action {
@@ -8,9 +9,16 @@ declare module '@ngrx/store' {
 }
 
 export enum addressActionTypes {
+    setAddress = '[Register Component] [Address] setAddress',
     setStreet = '[Register Component] [Address] setStreet',
     setHouseNumber = '[Register Component] [Address] setHouseNumber',
-    setZipCode = '[Register Component] [Address] setZipCode'
+    setZipCode = '[Register Component] [Address] setZipCode',
+    setCity = '[Register Component] [Address] setCity'
+}
+
+export class setAddress implements Action {
+    readonly type = addressActionTypes.setAddress;
+    constructor(public payload: Address) { }
 }
   
 export class setStreet implements Action {
@@ -25,5 +33,10 @@ export class setHouseNumber implements Action {
   
 export class setZipCode implements Action {
     readonly type = addressActionTypes.setZipCode;
+    constructor(public payload: string) { }
+}
+  
+export class setCity implements Action {
+    readonly type = addressActionTypes.setCity;
     constructor(public payload: string) { }
   }

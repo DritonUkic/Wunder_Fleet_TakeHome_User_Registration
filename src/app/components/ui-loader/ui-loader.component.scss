@@ -1,0 +1,50 @@
+$breakpoints: (
+    "phone":        275px,
+    "phone-wide":   340px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-wide": 1440px
+  );
+  @mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+      $width: map_get($breakpoints, $width);
+      @if $type == max {
+        $width: $width - 1px;
+      }
+      @media only screen and (#{$type}-width: $width) {
+        @content;
+      }
+    }
+  }
+
+.userinterface{
+    background: white;
+    height: 100vh;
+}
+.header{
+    height:10%
+}
+.body{
+    height: 75%;
+    @include mq('phone-wide') {
+        height: 75%;
+    }
+    @include mq('phablet') {
+        height: 80%;
+    }
+}
+.footer{
+    height: 15%;
+    background: #334146;
+    color: #fff;
+    font-weight: 400;
+    @include mq('phone-wide') {
+        height: 15%;
+    }
+    @include mq('phablet') {
+        height: 10%;
+    }
+}
