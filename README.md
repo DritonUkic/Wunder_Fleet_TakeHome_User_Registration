@@ -26,7 +26,7 @@
   This task required view renders and state reproduction, therefore i've decided to go with the redux pattern because it's proficient for view renders and state reproduction.
   It´s really easy to understand, debug and refactor the code when neccessary, especially when using redux dev tools.
   Here is an image of the architecture:
-  ![architecture](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/architecture.png)
+  ![architecture](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/architecture.png)
 
 ## Design Document 
   ### Goals:
@@ -170,14 +170,14 @@
 
   ### Screenshots
    #### Personal View
-      ![Personal view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/personal.png)
+   ![Personal view](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/personal.png)
    #### Address View
-      ![Address view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/address.png)
+   ![Address view](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/address.png)
    #### Payment View
-      ![Payment view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/payment.png)
+   ![Payment view](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/payment.png)
    #### Success View
-      ![Success view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/success.png)
+   ![Success view](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/success.png)
    #### Error View
-      ![Error view](https://github.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/tree/develop/screenshots/error.png)
+   ![Error view](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/error.png)
 
 
