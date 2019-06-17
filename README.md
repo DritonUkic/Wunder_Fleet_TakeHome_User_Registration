@@ -9,6 +9,7 @@
   * Delete alertService
   * URL/[currentView]
   * Don't import all Material components
+  * Keyboard and mobile optimizations for filling in
 
 ## What can be done better
   * Effects instead of services
