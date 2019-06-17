@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from 'src/material-module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from '@app/_components/alert.component';
@@ -33,6 +34,7 @@ import { AlertComponent } from '@app/_components/alert.component';
     HttpClientModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
+    FlexLayoutModule,
     StoreModule.forRoot({
       personal: Reducers.personalReducer,
       address: Reducers.addressReducer,
