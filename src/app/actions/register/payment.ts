@@ -38,5 +38,5 @@ export class setCustomerId implements Action {
   
 export class setPaymentDataId implements Action {
     readonly type = paymentActionTypes.setPaymentDataId;
-    constructor(public payload: number) { }
+    constructor(public payload: string) { }
   }
