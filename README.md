@@ -1,30 +1,30 @@
 # Wunder_Fleet_TakeHome_User_Registration Task 
 ## Possible optimizations
-  * Ask the user if he wants his data locally saved -> IBAN details on a public computer = dangerous
-  * At end of session set a cookie with expire date and delete localstorage
-  * Log init of components as action
-  * With components for each view in register, we can lazyload the components to improve initial page load time
-  * With correct form handling the register checkform() function gets obsolete
-  * When implementing more Components, create a module for register
+  * User opt-in localstorage
+  * Set cookie delete localstorage
+  * Log inits of components
+  * Lazyload
+  * Correct form handling
+  * Register module
   * Delete alertService
-  * Put current view into the router output URL
-  * Only import Material components we really need
+  * URL/[currentView]
+  * Don't import all Material components
 
 ## What can be done better
   * Effects instead of services
-  * Function SubmitPaymentData in register belongs to Payment actions
+  * Function SubmitPaymentData to Payment actions
   * Error handling
   * Register store as forFeature
-  * Meta-Reducer to compose map of reducers into a single reducer
+  * Meta-Reducer for a single reducer
   * Module and store for ui-loader
   * Components for every step, register isn't atomic
-  * Router and components instead of a variable 'currentStep'
+  * Router and components for each view
   * Fully integrate corporate identity, including theme colors
   * Smoother UI with animations
 
 ## Explanation of used pattern
-  This task required view renders and state reproduction, therefore i've decided to go with the redux pattern because it's proficient for view renders and state reproduction.
-  It´s really easy to understand, debug and refactor the code when neccessary, especially when using redux dev tools.
+  This task required view renders and state reproduction, therefore i've decided to go with the redux pattern because it's proficient for view renders and state reproduction.  
+  It´s really easy to understand, debug and refactor the code when neccessary, especially when using redux dev tools.  
   Here is an image of the architecture:
   ![architecture](https://raw.githubusercontent.com/DritonUkic/Wunder_Fleet_TakeHome_User_Registration/develop/screenshots/architecture.png)
 
